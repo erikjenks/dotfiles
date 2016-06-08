@@ -39,7 +39,7 @@ end
 # Use Hash.toy to get an hash to play with
 class Hash
   def self.toy(n = 10)
-    Hash[Array.toy(n).zip(Array.toy(n) { |c| (96 + (c + 1)).chr })]
+    Hash[Array.integer_toy(n).zip(Array.integer_toy(n) { |c| (96 + (c + 1)).chr })]
   end
 end
 
