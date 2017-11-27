@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jenks/.oh-my-zsh
+export ZSH=/Users/Erik/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -54,7 +54,7 @@ ZSH_THEME=cobalt2
 plugins=(git bundler rails brew history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
+fpath=(/usr/local/share/zsh-completions $fpath)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -81,18 +81,31 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias ideal="cd ~/ideal_meals_v2"
 alias zshconfig="atom ~/.zshrc"
 alias ohmyzsh="atom ~/.oh-my-zsh"
 alias gbc="git checkout -b"
-alias rors="bundle exec rails server Puma"
+alias gPa="git pull --all"
+alias rors="bundle exec rails server"
 alias rorc="bundle exec rails console"
+alias webstart="cd ~/px-web-app; gPa; nvm use; npm install; cd client; nvm use; npm install; cd ..; npm run development"
 alias sandbox="bundle exec rails console -s"
 alias rPort="lsof -wni tcp:3000"
 alias zource="source ~/.zshrc"
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby 2.4.0
+alias ber="bundle exec rspec"
+alias rordm="bundle exec rake db:migrate"
+alias gtlg="git log --oneline --abbrev-commit --graph --decorate"
+alias gs="git status"
+alias nt="npm test"
 
-export NVM_DIR="/Users/jenks/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
+  . ~/.config/exercism/exercism_completion.zsh
+fi
+
+export NPM_TOKEN=""
+export NVM_DIR=$(readlink "$HOME/.nvm")
+source ~/.nvm/nvm.sh
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/sbin:$PATH"
